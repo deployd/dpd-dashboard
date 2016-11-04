@@ -8,8 +8,9 @@
     "url": "git://github.com/deployd/dpd-dashboard.git"
   },
   "dependencies": {
-    "ejs": "^2.5.1",
     "async": "^2.0.1",
+    "dpd-clientlib": "^0.8.9",
+    "ejs": "^2.5.1",
     "filed": "^0.1.0"
   },
   "bugs": {
