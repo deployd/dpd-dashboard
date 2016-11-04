@@ -22,7 +22,7 @@ util.inherits(Dashboard, Resource);
 module.exports = Dashboard;
 
 Dashboard.selfHost = function(options) {
-  return new Dashboard('dashboard');
+  return new Dashboard('dashboard', options);
 }
 
 Dashboard.prototype.handle = function(ctx, next) {
