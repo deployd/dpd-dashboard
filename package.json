@@ -1,0 +1,29 @@
+{
+  "name": "dpd-dashboard",
+  "description": "Dashboard for Deployd",
+  "version": "0.8.9",
+  "author": "Deployd Contributors",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/deployd/dpd-dashboard.git"
+  },
+  "dependencies": {
+    "ejs": "^2.5.1",
+    "async": "^2.0.1",
+    "filed": "^0.1.0"
+  },
+  "bugs": {
+    "url": "https://github.com/deployd/dpd-dashboard/issues"
+  },
+  "homepage": "https://github.com/deployd/dpd-dashboard",
+  "main": "dashboard.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "dashboard",
+    "dpd",
+    "deployd"
+  ],
+  "license": "Apache-2.0"
+}
