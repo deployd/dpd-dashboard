@@ -99,7 +99,7 @@ $(document).ready(function() {
 
     dpd('__resources').put(Context.resourceId + '/' + fileName, put, function(res, err) {
       if (err) { return ui.error("Error saving event", err.message).effect('slide'); }
-      if (!$('#notifications li').length) ui.notify("Saved").hide(1000).effect('slide');
+      else if (!$('#notifications li').length) ui.notify("Saved").hide(1000).effect('slide');
     });
   }
 

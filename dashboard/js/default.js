@@ -55,7 +55,7 @@ function update(showError) {
     settings = newSettings;
     dpd('__resources').put(Context.resourceId, settings, function(res, err) {
       if (err) { ui.error("Error saving", err.message).effect('slide').closable(); }
-      if (!$('#notifications li').length) ui.notify("Saved").hide(1000).effect('slide');
+      else if (!$('#notifications li').length) ui.notify("Saved").hide(1000).effect('slide');
     });
   } catch (ex) {
     if (showError) { ui.error("Invalid JSON", ex.message).effect('slide').closable(); }

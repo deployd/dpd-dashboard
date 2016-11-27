@@ -59,8 +59,10 @@ function save() {
   });
   dpd('__resources').put(Context.resourceId, update, function(res, err) {
     if (err) { ui.error("Error saving", err.message).effect('slide').closable(); }
-    ui.notify("Saved").hide(1000).effect('slide');
-    $('#save-button').attr('disabled', true);
+    else {
+      ui.notify("Saved").hide(1000).effect('slide');
+      $('#save-button').attr('disabled', true);
+    }
   });
 }
 
