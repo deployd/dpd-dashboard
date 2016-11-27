@@ -1,7 +1,7 @@
 {
   "name": "dpd-dashboard",
   "description": "Dashboard for Deployd",
-  "version": "0.8.9",
+  "version": "0.0.1",
   "author": "Deployd Contributors",
   "repository": {
     "type": "git",
@@ -26,5 +26,5 @@
     "dpd",
     "deployd"
   ],
-  "license": "Apache-2.0"
+  "license": "MIT"
 }
