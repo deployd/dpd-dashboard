@@ -132,9 +132,8 @@ Dashboard.prototype.loadPage = function(ctx, fn) {
     , self = this
     , dashboardPath
     , pagePath;
-
   if (parts.length) {
-    resourceId = parts[0];
+    resourceId = parts.slice(0, parts.length - 1).join('/') || parts[0];
     resource = ctx.server.resources.filter(function(r) { return r.name === resourceId.toLowerCase() })[0];
 
     if (resource) {
@@ -144,7 +143,7 @@ Dashboard.prototype.loadPage = function(ctx, fn) {
       options.events = resourceType.events;
       options.scripts = [];
 
-      var page = parts[1];
+      var page = parts.length > 1 ? parts.slice(-1)[0] : null;
 
       if (!page && resourceType.dashboard && resourceType.dashboard.pages) {
         page = resourceType.dashboard.pages[0];
