@@ -131,9 +131,18 @@ Dashboard.prototype.loadPage = function(ctx, fn) {
     , options = {}
     , self = this
     , dashboardPath
-    , pagePath;
+    , pagePath
+    , page;
   if (parts.length) {
-    resourceId = parts.slice(0, parts.length - 1).join('/') || parts[0];
+    if (/\/$/.test(ctx.url)) {
+      // if the url ends with a slash, we have a page
+      resourceId = parts.slice(0, parts.length - 1).join('/') || parts[0];
+      page = parts.length > 1 ? parts.slice(-1)[0] : null;
+    } else {
+      // otherwise, the resource is the full url
+      resourceId = parts.join('/');
+    }
+    
     resource = ctx.server.resources.filter(function(r) { return r.name === resourceId.toLowerCase() })[0];
 
     if (resource) {
@@ -143,7 +152,6 @@ Dashboard.prototype.loadPage = function(ctx, fn) {
       options.events = resourceType.events;
       options.scripts = [];
 
-      var page = parts.length > 1 ? parts.slice(-1)[0] : null;
 
       if (!page && resourceType.dashboard && resourceType.dashboard.pages) {
         page = resourceType.dashboard.pages[0];
