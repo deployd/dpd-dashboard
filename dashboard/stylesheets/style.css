@@ -5046,7 +5046,8 @@ body {
     -webkit-box-flex: 1;
     -ms-box-flex: 1;
     -o-box-flex: 1; }
-  #header h1, #header h2 {
+  #header h1,
+  #header h2 {
     padding-left: 20px;
     white-space: nowrap;
     color: #fff;
@@ -5209,10 +5210,12 @@ body {
 .ace-deployd .ace_invisible {
   color: rgba(255, 255, 255, 0.25); }
 
-.ace-deployd .ace_keyword, .ace-deployd .ace_meta {
+.ace-deployd .ace_keyword,
+.ace-deployd .ace_meta {
   color: #CDA869; }
 
-.ace-deployd .ace_constant, .ace-deployd .ace_constant.ace_other {
+.ace-deployd .ace_constant,
+.ace-deployd .ace_constant.ace_other {
   color: #CF6A4C; }
 
 .ace-deployd .ace_constant.ace_character {
@@ -5714,7 +5717,9 @@ p a {
 .resource-list .container, .resource-list .full-width-container {
   width: 443px; }
 
-.panel, .well, .get-started {
+.panel,
+.well,
+.get-started {
   background: rgba(255, 255, 247, 0.05);
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -5733,24 +5738,33 @@ p a {
 h3 {
   color: #FFFFFF; }
 
-table, th, tr, td {
+table,
+th,
+tr,
+td {
   border-color: #363535 !important; }
 
-td, th {
+td,
+th {
   color: #fff !important; }
 
-.table-striped tbody tr:nth-child(odd) td, .table-striped tbody tr:nth-child(odd) th {
+.table-striped tbody tr:nth-child(odd) td,
+.table-striped tbody tr:nth-child(odd) th {
   background-color: #1c1c1c; }
 
 .table-striped tbody tr:hover td {
   background: inherit !important; }
 
-input, textarea {
+input,
+textarea {
   background: #1c1c1c;
   color: #fff;
   border: solid 1px #363535; }
 
-#dialog input, #dialog textarea, .modal input, .modal textarea {
+#dialog input,
+#dialog textarea,
+.modal input,
+.modal textarea {
   background-color: #ffffff;
   color: #666666; }
 
@@ -5760,16 +5774,19 @@ label {
 td {
   vertical-align: middle !important; }
 
-#resource-sidebar, #pre-resource-sidebar {
+#resource-sidebar,
+#pre-resource-sidebar {
   min-width: 150px;
   margin-bottom: 0;
   -webkit-border-radius: 10px 10px 10px 10px;
   -moz-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px; }
-  #resource-sidebar i, #pre-resource-sidebar i {
+  #resource-sidebar i,
+  #pre-resource-sidebar i {
     position: relative;
     top: -2px; }
-  #resource-sidebar li, #pre-resource-sidebar li {
+  #resource-sidebar li,
+  #pre-resource-sidebar li {
     position: relative;
     padding: 10px;
     -webkit-box-shadow: inset 3px 3px 40px rgba(0, 0, 0, 0.37);
@@ -5780,20 +5797,25 @@ td {
     border-left: solid 1px #1c1c1c;
     border-bottom: solid 1px #030202;
     border-right: solid 1px #030202; }
-    #resource-sidebar li .options, #pre-resource-sidebar li .options {
+    #resource-sidebar li .options,
+    #pre-resource-sidebar li .options {
       visibility: hidden;
       position: absolute;
       right: 8px;
       top: 9px;
       padding: 8px; }
-      #resource-sidebar li .options:hover .caret, #pre-resource-sidebar li .options:hover .caret {
+      #resource-sidebar li .options:hover .caret,
+      #pre-resource-sidebar li .options:hover .caret {
         border-top-color: #ffffff; }
-      #resource-sidebar li .options .caret, #pre-resource-sidebar li .options .caret {
+      #resource-sidebar li .options .caret,
+      #pre-resource-sidebar li .options .caret {
         border-top-color: #838181;
         opacity: 1; }
-    #resource-sidebar li:hover .options, #pre-resource-sidebar li:hover .options {
+    #resource-sidebar li:hover .options,
+    #pre-resource-sidebar li:hover .options {
       visibility: visible; }
-    #resource-sidebar li li, #pre-resource-sidebar li li {
+    #resource-sidebar li li,
+    #pre-resource-sidebar li li {
       padding: 5px;
       -webkit-box-shadow: none;
       -moz-box-shadow: none;
@@ -5801,32 +5823,43 @@ td {
       background: rgba(0, 0, 0, 0.3);
       margin-left: 14px;
       margin-right: 14px; }
-      #resource-sidebar li li i, #pre-resource-sidebar li li i {
+      #resource-sidebar li li i,
+      #pre-resource-sidebar li li i {
         position: relative;
         top: -1px; }
-  #resource-sidebar a, #pre-resource-sidebar a {
+  #resource-sidebar a,
+  #pre-resource-sidebar a {
     font-weight: bold;
     font-size: 10px;
     text-transform: uppercase;
     cursor: pointer;
     color: #838181; }
-    #resource-sidebar a i, #pre-resource-sidebar a i {
+    #resource-sidebar a i,
+    #pre-resource-sidebar a i {
       opacity: 0.5; }
-    #resource-sidebar a:hover, #pre-resource-sidebar a:hover {
+    #resource-sidebar a:hover,
+    #pre-resource-sidebar a:hover {
       background: none !important; }
-  #resource-sidebar li.active, #pre-resource-sidebar li.active {
+  #resource-sidebar li.active,
+  #pre-resource-sidebar li.active {
     background: rgba(255, 255, 255, 0.05); }
-  #resource-sidebar li.active > a, #pre-resource-sidebar li.active > a {
+  #resource-sidebar li.active > a,
+  #pre-resource-sidebar li.active > a {
     color: #FFFFFF; }
-    #resource-sidebar li.active > a i, #pre-resource-sidebar li.active > a i {
+    #resource-sidebar li.active > a i,
+    #pre-resource-sidebar li.active > a i {
       opacity: 1; }
-  #resource-sidebar > li.active > a, #pre-resource-sidebar > li.active > a {
+  #resource-sidebar > li.active > a,
+  #pre-resource-sidebar > li.active > a {
     display: block; }
-  #resource-sidebar ul, #pre-resource-sidebar ul {
+  #resource-sidebar ul,
+  #pre-resource-sidebar ul {
     margin-top: 10px; }
-  #resource-sidebar .nav, #pre-resource-sidebar .nav {
+  #resource-sidebar .nav,
+  #pre-resource-sidebar .nav {
     margin-bottom: 0; }
-  #resource-sidebar .res-separator, #pre-resource-sidebar .res-separator {
+  #resource-sidebar .res-separator,
+  #pre-resource-sidebar .res-separator {
     color: white;
     margin: 0px 2px; }
 
@@ -5948,7 +5981,8 @@ li.component-type-item {
   bottom: 0; }
   .ide-container .main-area.mid {
     right: 260px; }
-  .ide-container .main-area.vertical-split .top-panel, .ide-container .main-area.vertical-split .bottom-panel {
+  .ide-container .main-area.vertical-split .top-panel,
+  .ide-container .main-area.vertical-split .bottom-panel {
     position: absolute;
     overflow-y: auto;
     left: 0;
@@ -5978,9 +6012,11 @@ li.component-type-item {
 
 #current-data table {
   margin-bottom: 10px; }
-  #current-data table td, #current-data table th {
+  #current-data table td,
+  #current-data table th {
     white-space: nowrap; }
-    #current-data table td .alert, #current-data table th .alert {
+    #current-data table td .alert,
+    #current-data table th .alert {
       margin-bottom: 0; }
 
 #current-data #current-data-querystring {
@@ -6034,7 +6070,9 @@ li.component-type-item {
 .component-item-header .delete-btn {
   cursor: pointer; }
 
-.component-item-header input, .component-item-header select, .component-item-header label {
+.component-item-header input,
+.component-item-header select,
+.component-item-header label {
   margin-bottom: 0;
   margin-right: 4px; }
 
@@ -6061,9 +6099,14 @@ li.component-type-item {
     -ms-box-flex: 1;
     -o-box-flex: 1;
     display: block; }
-  .component-item-edit input[type="text"], .component-item-edit label, .component-item-edit button {
+  .component-item-edit input[type="text"],
+  .component-item-edit label,
+  .component-item-edit button {
     margin-right: 4px; }
-  .component-item-edit > .type-selector, .component-item-edit > button, .component-item-edit > label, .component-item-edit > a {
+  .component-item-edit > .type-selector,
+  .component-item-edit > button,
+  .component-item-edit > label,
+  .component-item-edit > a {
     display: block; }
 
 li.component-item {
@@ -6087,10 +6130,12 @@ li.component-item {
       margin-top: 6px; }
   li.component-item.unsaved {
     border: dashed 1px #FFFFFF; }
-  li.component-item .name, li.component-item .path {
+  li.component-item .name,
+  li.component-item .path {
     cursor: text;
     margin-left: 6px; }
-  li.component-item:hover .name, li.component-item:hover .path {
+  li.component-item:hover .name,
+  li.component-item:hover .path {
     border: dashed 1px #363535;
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
@@ -6112,7 +6157,8 @@ li.component-item {
   li.component-item .detail label {
     color: #FFFFFF; }
 
-#property-list .locked:hover .name, #property-list .locked:hover .path {
+#property-list .locked:hover .name,
+#property-list .locked:hover .path {
   border: none;
   margin-left: 0;
   padding: 5px;
@@ -6170,7 +6216,8 @@ table input {
   background: #363535;
   color: #FFFFFF; }
 
-.get-started, .get-started-light {
+.get-started,
+.get-started-light {
   margin: 10px 0;
   padding: 19px 19px 9px 19px;
   color: #fff; }
@@ -6243,7 +6290,8 @@ pre {
   background: #363535 !important;
   color: #fff; }
 
-#js-examples, #api {
+#js-examples,
+#api {
   color: #fff; }
 
 .prettyprint {
