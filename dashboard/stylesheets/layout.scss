@@ -1,0 +1,96 @@
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  @include display-box();
+  @include box-orient(vertical);
+  width: 100%;
+}
+
+#header {
+  // background: none !important;
+  background: rgba(33, 33, 33, 0.5) url(../img/fabric.png) !important;
+  @include box-shadow(inset 1px 1px 10px rgba(0, 0, 0, .5)); // background: !important;
+  border-bottom: 1px solid #111111;
+  padding: 0 22px;
+  @include display-box();
+  @include box-orient(horizontal);
+  @include box-align(center);
+  .seperator {
+    @include box-flex(1);
+  }
+  h1,
+  h2 {
+    padding-left: 20px;
+    white-space: nowrap;
+    color: $white;
+    display: inline-block;
+    margin: 0;
+  }
+}
+
+#body-container {
+  padding: 20px;
+  padding-top: 10px;
+  min-height: 100%;
+  width: 100%;
+  min-width: 1000px;
+  @include box-sizing(border-box);
+  @include box-flex(1);
+  @include display-box();
+}
+
+#resource-sidebar-container {
+  width: 250px;
+  margin-right: 10px;
+}
+
+#main-container {
+  @include box-flex(1);
+  @include display-box();
+  @include box-orient(vertical);
+  width: 100%;
+}
+
+.section-header {
+  @include display-box();
+  width: 100%;
+  margin-bottom: 10px;
+  h3 {
+    vertical-align: middle;
+    @include box-flex(1);
+    @include display-box();
+    @include box-align(center);
+    margin: 0 !important;
+  }
+}
+
+#main-container .well.full-page {
+  @include box-flex(1);
+}
+
+.well h3 {
+  height: 28px;
+  line-height: 28px;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+#resources-empty {
+  margin-bottom: 0;
+}
+
+.two-column-container {
+  @include display-box();
+  width: 100%;
+  @include box-sizing(border-box);
+  .main-column {
+    @include box-flex(1);
+  }
+  .sidebar-column {
+    margin-left: 10px;
+    width: 250px;
+  }
+}

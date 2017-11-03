@@ -1,7 +1,7 @@
 {
   "name": "dpd-dashboard",
   "description": "Dashboard for Deployd",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "author": "Deployd Contributors",
   "repository": {
     "type": "git",
@@ -9,10 +9,14 @@
   },
   "dependencies": {
     "async": "^2.0.1",
+    "bootstrap-less": "^3.3.8",
+    "bootstrap-sass": "^2.3.2",
     "dpd-clientlib": "^0.8.9",
     "ejs": "^2.5.1",
     "filed": "^0.1.0",
-    "mime": "v1.4.0"
+    "less": "^2.7.3",
+    "mime": "v1.4.0",
+    "node-sass": "^4.5.3"
   },
   "bugs": {
     "url": "https://github.com/deployd/dpd-dashboard/issues"
@@ -20,6 +24,7 @@
   "homepage": "https://github.com/deployd/dpd-dashboard",
   "main": "dashboard.js",
   "scripts": {
+    "prepublish": "node-sass dashboard/stylesheets/style.scss dashboard/stylesheets/style.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

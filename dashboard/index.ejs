@@ -60,7 +60,12 @@
       <li <%= isCurrent ? 'class="active"' : '' %>>
         <a href="/dashboard/<%= resource.id %>" <%= type && type.dashboardPages ? 'class="pages-header"' : '' %>>
           <i class="icon-white icon-custom <%- resource.type.toLowerCase() %>"></i>&nbsp;
-          <span><%- resource.id %></span>
+          <% resource.id.split('/').forEach(function(part, index) { %>
+            <span><%- part %></span>
+            <% if(index !== resource.id.split('/').length - 1) { %>
+              <span class="res-separator"> / </span>
+            <% } %>
+          <% }); %>
         </a>
         <a href="#" class="options"><span class="caret"></span></a>
         <% if (type && type.dashboardPages) { %>
