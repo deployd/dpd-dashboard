@@ -55,25 +55,30 @@
     </div>
 
     <script type="text/html" id="resource-sidebar-template">
-      <% var type = types[resource.type]; %>
-      <% var isCurrent = resource.id === Context.resourceId %>
-      <li <%= isCurrent ? 'class="active"' : '' %>>
-        <a href="/dashboard/<%= resource.id %>" <%= type && type.dashboardPages ? 'class="pages-header"' : '' %>>
-          <i class="icon-white icon-custom <%- resource.type.toLowerCase() %>"></i>&nbsp;
-          <% resource.id.split('/').forEach(function(part, index) { %>
-            <span><%- part %></span>
-            <% if(index !== resource.id.split('/').length - 1) { %>
-              <span class="res-separator"> / </span>
-            <% } %>
-          <% }); %>
-        </a>
-        <a href="#" class="options"><span class="caret"></span></a>
-        <% if (type && type.dashboardPages) { %>
-          <ul class="nav pages type-icons <%= isCurrent ? '' : 'hide' %>">
-            <% type.dashboardPages.forEach(function(p) { %>
-              <li <%- isCurrent && (Context.page || '').toLowerCase() === p.toLowerCase() ? 'class=active' : ''%>  ><a href="/dashboard/<%= resource.id %>/<%= p.toLowerCase() %>/"><i class="icon-white icon-custom <%= p.toLowerCase() %>"></i> <%= p %></a></li>
+      <% if(type) { %>
+        <li class="group-type"><%- type.label || type.type %></span>
+      <% } else { %>
+        <% var type = types[resource.type]; %>
+        <% var isCurrent = resource.id === Context.resourceId %>
+
+        <li class="resource" <%= isCurrent ? 'class="active"' : '' %>>
+          <a href="/dashboard/<%= resource.id %>" <%= type && type.dashboardPages ? 'class="pages-header"' : '' %>>
+            <i class="icon-white icon-custom <%- resource.type.toLowerCase() %>"></i>&nbsp;
+            <% resource.id.split('/').forEach(function(part, index) { %>
+              <span><%- part %></span>
+              <% if(index !== resource.id.split('/').length - 1) { %>
+                <span class="res-separator"> / </span>
+              <% } %>
             <% }); %>
-          </ul>
+          </a>
+          <a href="#" class="options"><span class="caret"></span></a>
+          <% if (type && type.dashboardPages) { %>
+            <ul class="nav pages type-icons <%= isCurrent ? '' : 'hide' %>">
+              <% type.dashboardPages.forEach(function(p) { %>
+                <li <%- isCurrent && (Context.page || '').toLowerCase() === p.toLowerCase() ? 'class=active' : ''%>  ><a href="/dashboard/<%= resource.id %>/<%= p.toLowerCase() %>/"><i class="icon-white icon-custom <%= p.toLowerCase() %>"></i> <%= p %></a></li>
+              <% }); %>
+            </ul>
+          <% } %>
         <% } %>
       </li>
     </script>
@@ -117,9 +122,9 @@
     <script type="text/javascript" src="/dashboard/js/lib/ace/mode-json.js"></script>
     <script type="text/javascript" src="/dashboard/js/lib/prettify.js"></script>
     <script type="text/javascript" src="/dpd.js"></script>
-    <script type="text/javascript" src="/dashboard/js/events.js"></script>
-    <script type="text/javascript" src="/dashboard/js/sidebar.js"></script>
-    <script type="text/javascript" src="/dashboard/js/header.js"></script>
+    <script type="text/javascript" src="/dashboard/js/events.js?<?- version ?>"></script>
+    <script type="text/javascript" src="/dashboard/js/sidebar.js?<?- version ?>"></script>
+    <script type="text/javascript" src="/dashboard/js/header.js?<?- version ?>"></script>
 
     <? if (typeof scripts !== 'undefined') scripts.forEach(function(s) { ?>
 

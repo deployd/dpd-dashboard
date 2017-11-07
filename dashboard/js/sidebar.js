@@ -71,37 +71,57 @@ $(document).ready(function() {
         if (a.id < b.id) return -1;
         return 0;
       });
+
+      var resourceTypesList = Object.keys(resourceTypes).map(function(k) {
+        return { label: resourceTypes[k].label || resourceTypes[k].type, resource: resourceTypes[k] };
+      }).sort(function(a, b){
+        if (a.label > b.label) return 1;
+        if (a.label < b.label) return -1;
+        return 0;
+      });
       
       $('#resources-empty').hide();
-      resources.forEach(function(resource) {
-        var $el = $(resourceSidebarTemplate({resource: resource, types: resourceTypes}));
 
-        function showContextMenu(e) {
-          var $options = $el.find('.options')
-            , pos = $options.offset();
-          currentMenuResource = resource;
-          resourceMenu.moveTo(pos.left + $options.width(), pos.top + $options.height()).show();
-          e.preventDefault();
-        }
-
-        $el.find('.pages-header').dblclick(function() {
-          location.href = $(this).attr('href');
-        }).click(function(e) {
-          if (e.which === 2) { return true; }
-          $el.find('.pages').slideToggle(200);
-          return false;
-        });
-
-        $el.find('.options').click(function(e) {
-          showContextMenu(e);
-          return false;
-        });
-        $el.on('contextmenu', function(e) {
-          showContextMenu(e);
-          return false;
-        });
+      resourceTypesList.forEach(function(type) {
+        var $el = $(resourceSidebarTemplate({type: type}));
         $el.appendTo($sidebar);
+          
+        resources.filter(function(resource) {
+          return resource.type == type.resource.type;
+        }).forEach(function(resource) {
+          var $el = $(resourceSidebarTemplate({resource: resource, types: resourceTypes}));
+  
+          function showContextMenu(e) {
+            var $options = $el.find('.options')
+              , pos = $options.offset();
+            currentMenuResource = resource;
+            resourceMenu.moveTo(pos.left + $options.width(), pos.top + $options.height()).show();
+            e.preventDefault();
+          }
+  
+          $el.find('.pages-header').dblclick(function() {
+            location.href = $(this).attr('href');
+          }).click(function(e) {
+            if (e.which === 2) { return true; }
+            $el.find('.pages').slideToggle(200);
+            return false;
+          });
+  
+          $el.find('.options').click(function(e) {
+            showContextMenu(e);
+            return false;
+          });
+          // disable context menu
+          // $el.on('contextmenu', function(e) {
+          //   showContextMenu(e);
+          //   return false;
+          // });
+          $el.appendTo($sidebar);
+        });
+
       });
+
+      
     } else {
       $('#resources-empty').show();
     }

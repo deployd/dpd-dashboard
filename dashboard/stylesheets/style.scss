@@ -182,6 +182,12 @@ td {
       margin-left: 14px;
       margin-right: 14px; // text-align: center;
     }
+
+    &.group-type {
+      color: white;
+      @include box-shadow(inset 3px 3px 40px rgba(0, 0, 0, .37));
+      background-color: #1a1a1a;
+    }
   }
   a {
     font-weight: bold;
