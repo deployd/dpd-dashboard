@@ -105,7 +105,7 @@ Dashboard.prototype.render = function(ctx) {
     render.bodyHtml = options.bodyHtml;
 
     try {
-      var rendered = layout({context: context, render: render, scripts: options.scripts || [], css: options.css || null});
+      var rendered = layout({context: context, render: render, scripts: options.scripts || [], css: options.css || null, version: require('./package.json').version});
       ctx.res.setHeader('Content-Type', 'text/html; charset=UTF-8');
       ctx.res.end(rendered);
     } catch (ex) {

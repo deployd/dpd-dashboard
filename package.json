@@ -1,7 +1,7 @@
 {
   "name": "dpd-dashboard",
   "description": "Dashboard for Deployd",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "author": "Deployd Contributors",
   "repository": {
     "type": "git",

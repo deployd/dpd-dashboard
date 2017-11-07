@@ -5827,6 +5827,13 @@ td {
       #pre-resource-sidebar li li i {
         position: relative;
         top: -1px; }
+    #resource-sidebar li.group-type,
+    #pre-resource-sidebar li.group-type {
+      color: white;
+      -webkit-box-shadow: inset 3px 3px 40px rgba(0, 0, 0, 0.37);
+      -moz-box-shadow: inset 3px 3px 40px rgba(0, 0, 0, 0.37);
+      box-shadow: inset 3px 3px 40px rgba(0, 0, 0, 0.37);
+      background-color: #1a1a1a; }
   #resource-sidebar a,
   #pre-resource-sidebar a {
     font-weight: bold;
