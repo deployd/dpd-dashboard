@@ -8,4 +8,15 @@ $(document).ready(function() {
 
   $('#header #open-btn').attr('href', 'http://' + window.location.host);
 
+ 
+  $( "#files" ).click(function() {
+    $( "#body-container" ).hide();
+    $( "#body-container1" ).show(); 
+  });
+
+  $( "#apis" ).click(function() {
+    $( "#body-container1" ).hide();
+    $( "#body-container" ).show(); 
+  });
+
 });

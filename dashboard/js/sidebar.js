@@ -173,9 +173,9 @@ $(document).ready(function() {
   }
 
   function pathDialog(verb, title, defaultValue, fn) {
-    var $input = $('<input type="text" value="' + defaultValue + '" />')
+    var $input = $('/<input type="text" placeholder="' + defaultValue + '" />')
       , confirm;
-    confirm = ui.confirm(title, $input)
+    confirm = ui.confirm(title, $input )
       .ok(verb)
       .cancel("cancel")
       .overlay()

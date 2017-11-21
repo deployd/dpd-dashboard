@@ -140,7 +140,7 @@ Dashboard.prototype.loadPage = function(ctx, fn) {
       page = parts.length > 1 ? parts.slice(-1)[0] : null;
     } else {
       // otherwise, the resource is the full url
-      resourceId = parts.join('/');
+      resourceId = parts.join('/');     
     }
     
     resource = ctx.server.resources.filter(function(r) { return r.name === resourceId.toLowerCase() })[0];
