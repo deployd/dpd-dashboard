@@ -1,6 +1,6 @@
 var util = require('util')
   , httpUtil = require('deployd/lib/util/http')
-  , filed = require('filed')
+  , filed = require('filed-mimefix')
   , Resource = require('deployd/lib/resource')
   , path = require('path')
   , debug = require('debug')('dashboard')
