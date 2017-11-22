@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.3"></a>
+## [1.1.3](https://github.com/deployd/dpd-dashboard/compare/v1.1.0...v1.1.3) (2017-11-22)
+
+
+### Bug Fixes
+
+* use filed-mimefix package ([#9](https://github.com/deployd/dpd-dashboard/issues/9)) ([c83b7f6](https://github.com/deployd/dpd-dashboard/commit/c83b7f6))
+* wrong require of 'filed' ([#11](https://github.com/deployd/dpd-dashboard/issues/11)) ([54063f6](https://github.com/deployd/dpd-dashboard/commit/54063f6))
+
+
+
 <a name="1.1.2"></a>
 ## [1.1.2](https://github.com/deployd/dpd-dashboard/compare/v1.1.0...v1.1.2) (2017-11-20)
 
