@@ -45,17 +45,16 @@ $.fn.fileTree = function (api_url) {
         $.ajax({
             type: 'GET',
             url: api_url + '/' + $node.attr('href'),
-            timeout: 300,
-            // context: $('body'),
+            timeout: 300, 
             success: function (data) {
-                console.log(data);
+                // console.log(data);
                 var oldModel = editor.getModel();
                 var newModel = monaco.editor.createModel(data);
                 editor.setModel(newModel);
             },
             error: function (xhr, type) {
                 alert('Ajax error!');
-                console.log(xhr);
+                // console.log(xhr);
             }
         })
     });
@@ -76,8 +75,8 @@ $.fn.fileTree = function (api_url) {
     $('#save').click(function () {
         event.preventDefault();
         var $node = $(this);
-        console.log('editor.getModel', editor.getValue());
-        console.log('curnode', $curnode);
+        // console.log('editor.getModel', editor.getValue());
+        // console.log('curnode', $curnode);
         $.ajax({
             type: 'POST',
             contentType: 'application/json',
@@ -89,7 +88,7 @@ $.fn.fileTree = function (api_url) {
             },
             error: function (xhr, type) {
                 alert('Ajax error!');
-                console.log(xhr);
+                // console.log(xhr);
             }
         })
 
