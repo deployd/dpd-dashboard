@@ -49,4 +49,19 @@ li.component-item {
 .ace-deployd .ace_gutter {
     background: #e6e6e6;
     color: #444;
-}
+} 
+ 
+  #body-container1 {
+    padding: 20px;
+    padding-top: 10px;
+    min-height: 100%;
+    width: 100%;
+    min-width: 1000px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-box-flex: 1;
+    -ms-box-flex: 1;
+    -o-box-flex: 1;  }

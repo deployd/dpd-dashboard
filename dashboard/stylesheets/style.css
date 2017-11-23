@@ -5054,7 +5054,7 @@ body {
     display: inline-block;
     margin: 0; }
 
-#body-container {
+#body-container  {
   padding: 20px;
   padding-top: 10px;
   min-height: 100%;
