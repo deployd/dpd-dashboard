@@ -1,13 +1,14 @@
-var util = require('util')
-  , httpUtil = require('deployd/lib/util/http')
-  , filed = require('filed')
-  , Resource = require('deployd/lib/resource')
-  , path = require('path')
-  , debug = require('debug')('dashboard')
-  , fs = require('fs')
-  , ejs = require('ejs')
-  , loadTypes = require('deployd/lib/type-loader')
-  , async = require('async');
+var util = require('util'),
+  httpUtil = require('deployd/lib/util/http'),
+  filed = require('filed'),
+  Resource = require('deployd/lib/resource'),
+  path = require('path'),
+  debug = require('debug')('dashboard'),
+  fs = require('fs'),
+  ejs = require('ejs'),
+  loadTypes = require('deployd/lib/type-loader'),
+  async = require('async'),
+  fileedit = require('./marscode');
 
 function Dashboard(name, options) {
   // internal resource
@@ -21,15 +22,19 @@ function Dashboard(name, options) {
 util.inherits(Dashboard, Resource);
 module.exports = Dashboard;
 
-Dashboard.selfHost = function(options) {
+Dashboard.selfHost = function (options) {
   return new Dashboard('dashboard', options);
 }
 
-Dashboard.prototype.handle = function(ctx, next) {
-  if (ctx.req.url === this.path) {
+Dashboard.prototype.handle = function (ctx, next) {
+  if (ctx.url.indexOf('/__editor') === 0) {
+    fileedit.filesHandle(ctx, next);
+  } else if (ctx.req.url === this.path) {
     return httpUtil.redirect(ctx.res, ctx.req.url + '/');
   } else if (ctx.url === '/__is-root') {
-    ctx.done(null, {isRoot: ctx.req.isRoot});
+    ctx.done(null, {
+      isRoot: ctx.req.isRoot
+    });
   } else if (ctx.url.indexOf('/__custom') === 0) {
     this.serveCustomAsset(ctx, next);
   } else if (ctx.url.indexOf('.') !== -1) {
@@ -43,18 +48,19 @@ Dashboard.prototype.handle = function(ctx, next) {
 };
 
 
-Dashboard.prototype.serveCustomAsset = function(ctx, next) {
-  var parts = ctx.url.split('/').filter(function(p) { return p; })
-    , resourceTypePath = parts[1]
-    , resource = this;
+Dashboard.prototype.serveCustomAsset = function (ctx, next) {
+  var parts = ctx.url.split('/').filter(function (p) {
+      return p;
+    }),
+    resourceTypePath = parts[1],
+    resource = this;
 
-  resource.loadTypes(function(err, types) {
-    var resourceTypeId
-      , resourceType
-      , dashboardPath
-      , reqUrl = parts.slice(2).join('/');
+  resource.loadTypes(function (err, types) {
+    var resourceTypeId, resourceType, dashboardPath, reqUrl = parts.slice(2).join('/');
 
-    resourceTypeId = Object.keys(types).filter(function(t) { return t.toLowerCase() === resourceTypePath; })[0];
+    resourceTypeId = Object.keys(types).filter(function (t) {
+      return t.toLowerCase() === resourceTypePath;
+    })[0];
 
     if (resourceTypeId) {
       resourceType = types[resourceTypeId];
@@ -68,44 +74,50 @@ Dashboard.prototype.serveCustomAsset = function(ctx, next) {
   });
 };
 
-Dashboard.prototype.loadTypes = function(fn) {
-  loadTypes(function(defaults, types) {
-    Object.keys(defaults).forEach(function(key) {
+Dashboard.prototype.loadTypes = function (fn) {
+  loadTypes(function (defaults, types) {
+    Object.keys(defaults).forEach(function (key) {
       types[key] = defaults[key];
     });
     fn(null, types);
   });
 };
 
-Dashboard.prototype.render = function(ctx) {
-  var self = this
-    , appName = path.basename(path.resolve('./'))
-    , env = ctx.server && ctx.server.options && ctx.server.options.env;
+Dashboard.prototype.render = function (ctx) {
+  var self = this,
+    appName = path.basename(path.resolve('./')),
+    env = ctx.server && ctx.server.options && ctx.server.options.env;
 
   async.parallel({
-      layout: self.loadLayout
-    , options: async.apply(self.loadPage.bind(self), ctx)
-  }, function(err, results) {
+    layout: self.loadLayout,
+    options: async.apply(self.loadPage.bind(self), ctx)
+  }, function (err, results) {
     if (err) return ctx.done(err);
 
-    var options = results.options || {}
-      , layout = results.layout
-      , render = {};
+    var options = results.options || {},
+      layout = results.layout,
+      render = {};
 
     var context = {
-        resourceId: options.resourceId
-      , resourceType: options.resourceType
-      , page: options.page
-      , basicDashboard: options.basicDashboard
-      , events: options.events
-      , appName: appName
-      , env: env
+      resourceId: options.resourceId,
+      resourceType: options.resourceType,
+      page: options.page,
+      basicDashboard: options.basicDashboard,
+      events: options.events,
+      appName: appName,
+      env: env
     };
 
     render.bodyHtml = options.bodyHtml;
 
     try {
-      var rendered = layout({context: context, render: render, scripts: options.scripts || [], css: options.css || null, version: require('./package.json').version});
+      var rendered = layout({
+        context: context,
+        render: render,
+        scripts: options.scripts || [],
+        css: options.css || null,
+        version: require('./package.json').version
+      });
       ctx.res.setHeader('Content-Type', 'text/html; charset=UTF-8');
       ctx.res.end(rendered);
     } catch (ex) {
@@ -114,25 +126,24 @@ Dashboard.prototype.render = function(ctx) {
   });
 };
 
-Dashboard.prototype.loadLayout = function(fn) {
+Dashboard.prototype.loadLayout = function (fn) {
 
-  fs.readFile(path.join(__dirname, 'dashboard', 'index.ejs'), 'utf-8', function(err, layout) {
+  fs.readFile(path.join(__dirname, 'dashboard', 'index.ejs'), 'utf-8', function (err, layout) {
     if (err) return fn(err);
-    var layoutTemplate = ejs.compile(layout, {delimiter:'?'}); //Avoid conlicts by using non-standard tags
+    var layoutTemplate = ejs.compile(layout, {
+      delimiter: '?'
+    }); //Avoid conlicts by using non-standard tags
     fn(null, layoutTemplate);
   });
 };
 
-Dashboard.prototype.loadPage = function(ctx, fn) {
-  var parts = ctx.url.split('/').filter(function(p) { return p; })
-    , resourceId
-    , resource
-    , resourceType
-    , options = {}
-    , self = this
-    , dashboardPath
-    , pagePath
-    , page;
+Dashboard.prototype.loadPage = function (ctx, fn) {
+  var parts = ctx.url.split('/').filter(function (p) {
+      return p;
+    }),
+    resourceId, resource, resourceType, options = {},
+    self = this,
+    dashboardPath, pagePath, page;
   if (parts.length) {
     if (/\/$/.test(ctx.url)) {
       // if the url ends with a slash, we have a page
@@ -140,10 +151,12 @@ Dashboard.prototype.loadPage = function(ctx, fn) {
       page = parts.length > 1 ? parts.slice(-1)[0] : null;
     } else {
       // otherwise, the resource is the full url
-      resourceId = parts.join('/');     
+      resourceId = parts.join('/');
     }
-    
-    resource = ctx.server.resources.filter(function(r) { return r.name === resourceId.toLowerCase() })[0];
+
+    resource = ctx.server.resources.filter(function (r) {
+      return r.name === resourceId.toLowerCase()
+    })[0];
 
     if (resource) {
       options.resourceId = resourceId;
@@ -163,10 +176,10 @@ Dashboard.prototype.loadPage = function(ctx, fn) {
       dashboardPath = resourceType.dashboard && resourceType.dashboard.path;
 
       async.waterfall([
-        function(fn) {
+        function (fn) {
           if (dashboardPath) {
             pagePath = path.join(dashboardPath, page + '.html');
-            fs.exists(pagePath, function(exists) {
+            fs.exists(pagePath, function (exists) {
               fn(null, exists);
             });
           } else {
@@ -174,24 +187,24 @@ Dashboard.prototype.loadPage = function(ctx, fn) {
           }
         },
 
-        function(exists, fn) {
+        function (exists, fn) {
           if (exists) {
             self.loadAdvancedDashboard({
-                pagePath: pagePath
-              , dashboardPath: dashboardPath
-              , page: page
-              , resourceType: resourceType
-              , options: options
+              pagePath: pagePath,
+              dashboardPath: dashboardPath,
+              page: page,
+              resourceType: resourceType,
+              options: options
             }, fn);
           } else {
             self.loadBasicDashboard({
-                options: options
-              , page: page
-              , resourceType: resourceType
+              options: options,
+              page: page,
+              resourceType: resourceType
             }, fn);
           }
         }
-      ], function(err) {
+      ], function (err) {
         fn(err, options);
       });
 
@@ -204,27 +217,27 @@ Dashboard.prototype.loadPage = function(ctx, fn) {
   fn(); //blank page
 };
 
-Dashboard.prototype.loadAdvancedDashboard = function(data, fn) {
-  var pagePath = data.pagePath
-    , dashboardPath = data.dashboardPath
-    , page = data.page
-    , resourceType = data.resourceType
-    , options = data.options;
+Dashboard.prototype.loadAdvancedDashboard = function (data, fn) {
+  var pagePath = data.pagePath,
+    dashboardPath = data.dashboardPath,
+    page = data.page,
+    resourceType = data.resourceType,
+    options = data.options;
 
 
   async.parallel({
-    bodyHtml: function(fn) {
+    bodyHtml: function (fn) {
       fs.readFile(pagePath, 'utf-8', fn);
     },
 
-    scripts: function(fn) {
+    scripts: function (fn) {
       if (resourceType.dashboard.scripts) {
-        resourceType.dashboard.scripts.forEach(function(s) {
+        resourceType.dashboard.scripts.forEach(function (s) {
           options.scripts.push('/__custom/' + resourceType.name.toLowerCase() + s);
         });
       }
 
-      fs.exists(path.join(dashboardPath, 'js', page + '.js'), function(exists) {
+      fs.exists(path.join(dashboardPath, 'js', page + '.js'), function (exists) {
         if (exists) {
           options.scripts.push('/__custom/' + resourceType.name.toLowerCase() + '/js/' + page + '.js');
         }
@@ -233,8 +246,8 @@ Dashboard.prototype.loadAdvancedDashboard = function(data, fn) {
       });
     },
 
-    stylesheet: function(fn) {
-      fs.exists(path.join(resourceType.dashboard.path, 'style.css'), function(exists) {
+    stylesheet: function (fn) {
+      fs.exists(path.join(resourceType.dashboard.path, 'style.css'), function (exists) {
         if (exists) {
           options.css = '/__custom/' + resourceType.name.toLowerCase() + '/style.css';
         }
@@ -242,7 +255,7 @@ Dashboard.prototype.loadAdvancedDashboard = function(data, fn) {
         fn();
       });
     }
-  }, function(err, results) {
+  }, function (err, results) {
     if (err) return fn(err);
 
     options.bodyHtml = results.bodyHtml;
@@ -254,11 +267,11 @@ Dashboard.prototype.loadAdvancedDashboard = function(data, fn) {
   });
 };
 
-Dashboard.prototype.loadBasicDashboard = function(data, fn) {
-  var options = data.options
-    , page = data.page
-    , resourceType = data.resourceType
-    , dashboardPath = path.join(__dirname, 'dashboard');
+Dashboard.prototype.loadBasicDashboard = function (data, fn) {
+  var options = data.options,
+    page = data.page,
+    resourceType = data.resourceType,
+    dashboardPath = path.join(__dirname, 'dashboard');
 
   options.page = page;
   if (page === 'index') {
@@ -266,19 +279,19 @@ Dashboard.prototype.loadBasicDashboard = function(data, fn) {
     if (resourceType.basicDashboard) {
       options.scripts.push('/js/basic.js');
       options.basicDashboard = resourceType.basicDashboard;
-      fs.readFile(path.join(dashboardPath, 'basic.html'), function(err, bodyHtml) {
+      fs.readFile(path.join(dashboardPath, 'basic.html'), function (err, bodyHtml) {
         options.bodyHtml = bodyHtml;
         fn(err);
       });
     } else {
       options.scripts.push('/js/default.js');
-      fs.readFile(path.join(dashboardPath, 'default.html'), function(err, bodyHtml) {
+      fs.readFile(path.join(dashboardPath, 'default.html'), function (err, bodyHtml) {
         options.bodyHtml = bodyHtml;
         fn(err);
       });
     }
   } else if (page === 'events') {
-    fs.readFile(path.join(dashboardPath, 'events.html'), function(err, bodyHtml) {
+    fs.readFile(path.join(dashboardPath, 'events.html'), function (err, bodyHtml) {
       options.bodyHtml = bodyHtml;
       fn(err);
     });
