@@ -7,8 +7,7 @@ var util = require('util'),
   fs = require('fs'),
   ejs = require('ejs'),
   loadTypes = require('deployd/lib/type-loader'),
-  async = require('async'),
-  fileedit = require('./marscode');
+  async = require('async') ;
 
 function Dashboard(name, options) {
   // internal resource
