@@ -27,9 +27,7 @@ Dashboard.selfHost = function (options) {
 }
 
 Dashboard.prototype.handle = function (ctx, next) {
-  if (ctx.url.indexOf('/__editor') === 0) {
-    fileedit.filesHandle(ctx, next);
-  } else if (ctx.req.url === this.path) {
+    if (ctx.req.url === this.path) {
     return httpUtil.redirect(ctx.res, ctx.req.url + '/');
   } else if (ctx.url === '/__is-root') {
     ctx.done(null, {

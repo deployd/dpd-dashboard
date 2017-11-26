@@ -6,10 +6,9 @@
 
 > Add a dashboard for your [Deployd](http://deployd.com/) app
 
-## Deployd Dashboard now becomes Deployd Studio a new Deployd IDE
-New Deployd studio has these features:
-1. File explorer for editing your middleware custom code (other than collection events) all in one IDE
-2. New Theme
+## Deployd Dashboard  
+New Deployd  dashboard has these features: 
+1. New Theme
 
 Features to be added:
 1. Enable Dashboard plugins
@@ -35,9 +34,7 @@ Screenshots:
 ![alt text](dashboardscreenshots/dpd-dashboard-properties.PNG)
 ![alt text](dashboardscreenshots/dpd-dashboard-events.PNG)
 ![alt text](dashboardscreenshots/dpd-dashboard-data.PNG)
-![alt text](dashboardscreenshots/dpd-dashboard-api.PNG)
-![alt text](dashboardscreenshots/dpd-dashboard-fileeditor.PNG)
-![alt text](dashboardscreenshots/dpd-dashboard-fileeditor1.PNG) 
+![alt text](dashboardscreenshots/dpd-dashboard-api.PNG) 
 
 
 
