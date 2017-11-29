@@ -15,7 +15,7 @@ function Dashboard(name, options) {
 
   this.loadTypes = async.memoize(this.loadTypes);
   this.loadLayout = async.memoize(this.loadLayout);
-
+ 
   Resource.apply(this, arguments);
 }
 util.inherits(Dashboard, Resource);
